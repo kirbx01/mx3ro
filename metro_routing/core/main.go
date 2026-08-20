@@ -7,9 +7,8 @@ import (
 	"os"
 	"sort"
 	"strings"
-
+	"mx3ro/ui"
 	"github.com/fatih/color"
-	"metro_routing/ui"
 )
 
 func main() {
@@ -28,7 +27,7 @@ func main() {
 
 	graph := buildGraph(metro.Edges)
 	nameLookup := buildNameLookup(metro.Stations)
-
+	distLookup := buildDistLookup(metro.Stations)
 	color.New(color.FgHiCyan, color.Bold).Println("waddup mx3ro user જ⁀➴")
 	fmt.Println()
 
@@ -74,7 +73,8 @@ func main() {
 	fmt.Printf("Found %d route(s):\n\n", len(routes))
 
 	for i, route := range routes {
-		color.New(color.FgHiWhite, color.Bold).Printf("Route %d (%d stops):\n", i+1, len(route)-1)
+	minutes := estimateMinutes(route, distLookup)
+	color.New(color.FgHiWhite, color.Bold).Printf("Route %d (%d stops, ~%.0f min):\n", i+1, len(route)-1, minutes)
 		var lastLine string
 		for j, step := range route {
 			printer := ui.LineColor(step.Line)

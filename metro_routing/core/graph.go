@@ -43,3 +43,11 @@ func buildNameLookup(stations []Station) map[string]string {
 	}
 	return lookup
 }
+
+func buildDistLookup(stations []Station) map[string]float64 {
+	lookup := make(map[string]float64)
+	for _, s := range stations {
+		lookup[s.Name] = s.Dist
+	}
+	return lookup
+}
