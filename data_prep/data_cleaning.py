@@ -12,7 +12,6 @@ def normalize_line(line):
 
 
 def parse_csv(path):
-    """Read the raw CSV and return a clean list of station dicts."""
     stations = []
 
     with open(path, encoding='utf-8-sig') as f:
@@ -24,7 +23,6 @@ def parse_csv(path):
             lat = row['Latitude']
             lon = row['Longitude']
 
-            # capture the [Conn: X,Y] text before we strip it
             match = re.search(r'\[Conn:\s*(.*?)\]', name)
             connections = match.group(1) if match else None
 
@@ -43,14 +41,8 @@ def parse_csv(path):
 
 
 def build_edges(stations):
-    """
-    Build graph edges two ways:
-    1. Consecutive stations on the same line (sorted by distance)
-    2. Interchange edges between same-named stations on different lines
-    """
     edges = []
 
-    # --- 1. Edges along each line, in physical order ---
     by_line = defaultdict(list)
     for s in stations:
         by_line[s['line']].append(s)
@@ -71,7 +63,6 @@ def build_edges(stations):
                 'line': line
             })
 
-    # --- 2. Interchange edges: same station name, different lines ---
     by_name = defaultdict(set)
     for s in stations:
         by_name[s['name']].add(s['line'])
