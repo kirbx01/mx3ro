@@ -1,3 +1,8 @@
+"""A point to keep in minding when sourcing or just using it or any general/academia purpose the csv file that is attached alongside and being 
+used for outputting is a dataset by Arun Jangir published on August 27,2023 at 13:58:38 GMT 530; newer metro data would be logged in as soon as
+I'd be able to access dmrc static data which due to some reasons i was not, but if you can help or give I'd be pleased to swap my contents 
+Kaggle Link for the dataset : https://www.kaggle.com/datasets/arunjangir245/delhi-metro-dataset """
+
 import csv
 import re
 import json
