@@ -20,28 +20,47 @@ var lineColors = map[string]string{
 	"Rapid":   "#1D9E75",
 }
 
+func normalizeLineName(line string) string {
+	trimmed := strings.TrimSpace(line)
+	trimmed = strings.TrimSuffix(trimmed, " line")
+	trimmed = strings.TrimSuffix(trimmed, " Line")
+	trimmed = strings.TrimSuffix(trimmed, "LINE")
+	return trimmed
+}
+
 func colorForLine(line string) lipgloss.Style {
-	for key, hex := range lineColors {
-		if strings.Contains(line, key) {
-			return lipgloss.NewStyle().Foreground(lipgloss.Color(hex))
-		}
+	style := lipgloss.NewStyle()
+	name := normalizeLineName(line)
+	if colorHex, ok := lineColors[name]; ok {
+		style = style.Foreground(lipgloss.Color(colorHex))
 	}
-	return lipgloss.NewStyle().Foreground(lipgloss.Color("#888880"))
+	return style
 }
 
 func RenderRoute(stations []string, lines []string) string {
 	var b strings.Builder
 
 	for i, station := range stations {
-		glyph := "●"
-		if i > 0 && i < len(stations)-1 && lines[i] != lines[i-1] {
-			glyph = "𖧋"
-		}
+		isSource := i == 0
+		isDestination := i == len(stations)-1
+		isInterchange := i > 0 && i < len(stations)-1 && lines[i] != lines[i-1]
+		isKeyStation := isSource || isDestination || isInterchange
 
 		style := colorForLine(lines[i])
+
+		glyph := "○"
+		if isKeyStation {
+			glyph = "●"
+		}
+
+		textStyle := style
+		if isKeyStation {
+			textStyle = style.Bold(true)
+		}
+
 		b.WriteString(style.Render(glyph))
 		b.WriteString(" ")
-		b.WriteString(station)
+		b.WriteString(textStyle.Render(station))
 
 		if i < len(stations)-1 {
 			b.WriteString("  ")
