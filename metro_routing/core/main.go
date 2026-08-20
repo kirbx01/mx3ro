@@ -7,7 +7,9 @@ import (
 	"os"
 	"sort"
 	"strings"
+
 	"mx3ro/ui"
+
 	"github.com/fatih/color"
 )
 
@@ -28,6 +30,7 @@ func main() {
 	graph := buildGraph(metro.Edges)
 	nameLookup := buildNameLookup(metro.Stations)
 	distLookup := buildDistLookup(metro.Stations)
+
 	color.New(color.FgHiCyan, color.Bold).Println("waddup mx3ro user જ⁀➴")
 	fmt.Println()
 
@@ -73,18 +76,18 @@ func main() {
 	fmt.Printf("Found %d route(s):\n\n", len(routes))
 
 	for i, route := range routes {
+		var stationNames []string
+		var lineNames []string
+		for _, step := range route {
+			stationNames = append(stationNames, step.Station)
+			lineNames = append(lineNames, step.Line)
+		}
+
 		minutes := estimateMinutes(route, distLookup)
 		duration := formatDuration(minutes)
-		color.New(color.FgHiWhite, color.Bold).Printf("Route %d (%d stops, ~%s):\n", i+1, len(route)-1, duration)
-		var lastLine string
-		for j, step := range route {
-			printer := ui.LineColor(step.Line)
-			if step.Line != lastLine && j > 0 {
-				color.New(color.FgHiWhite, color.Bold).Printf("  [Interchange -> %s]\n", step.Line)
-			}
-			printer("  %s\n", step.Station)
-			lastLine = step.Line
-		}
+
+		fmt.Printf("Route %d (%d stops, ~%s):\n", i+1, len(route)-1, duration)
+		fmt.Println(ui.RenderRoute(stationNames, lineNames))
 		fmt.Println()
 	}
 }

@@ -7,7 +7,7 @@ type StepInfo struct {
 	Line    string
 }
 
-func bfs(graph map[string][]Neighbor, source, destination string) []StepInfo {   //since 285 stations aint big we using bfs would scale after learning others 
+func bfs(graph map[string][]Neighbor, source, destination string) []StepInfo {
 	visited := map[string]bool{source: true}
 	queue := [][]StepInfo{{{Station: source, Line: ""}}}
 
@@ -31,7 +31,7 @@ func bfs(graph map[string][]Neighbor, source, destination string) []StepInfo {  
 		}
 	}
 
-	return nil 
+	return nil
 }
 
 func findAllRoutes(graph map[string][]Neighbor, current, destination string, visited map[string]bool, path []StepInfo, routes *[][]StepInfo, maxHops int) {
@@ -85,7 +85,7 @@ func estimateMinutes(route []StepInfo, distLookup map[string]float64) float64 {
 }
 
 func formatDuration(totalMinutes float64) string {
-	mins := int(totalMinutes + 0.5) // round to nearest minute
+	mins := int(totalMinutes + 0.5)
 	hours := mins / 60
 	remainder := mins % 60
 

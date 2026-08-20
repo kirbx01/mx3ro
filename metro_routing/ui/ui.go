@@ -2,30 +2,53 @@ package ui
 
 import (
 	"strings"
-	"github.com/fatih/color"
+
+	"github.com/charmbracelet/lipgloss"
 )
 
-func LineColor(line string) func(format string, a ...interface{}) {
-	switch {
-	case strings.Contains(line, "Red"):
-		return color.New(color.FgRed).PrintfFunc()
-	case strings.Contains(line, "Yellow"):
-		return color.New(color.FgYellow).PrintfFunc()
-	case strings.Contains(line, "Blue"):
-		return color.New(color.FgBlue).PrintfFunc()
-	case strings.Contains(line, "Green"):
-		return color.New(color.FgGreen).PrintfFunc()
-	case strings.Contains(line, "Violet"):
-		return color.New(color.FgMagenta).PrintfFunc()
-	case strings.Contains(line, "Pink"):
-		return color.New(color.FgHiMagenta).PrintfFunc()
-	case strings.Contains(line, "Magenta"):
-		return color.New(color.FgHiRed).PrintfFunc()
-	case strings.Contains(line, "Orange"):
-		return color.New(color.FgHiYellow).PrintfFunc()
-	case strings.Contains(line, "Gray"), strings.Contains(line, "Rapid"), strings.Contains(line, "Aqua"):
-		return color.New(color.FgCyan).PrintfFunc()
-	default:
-		return color.New(color.FgWhite).PrintfFunc()
+var lineColors = map[string]string{
+	"Red":     "#E24B4A",
+	"Yellow":  "#EF9F27",
+	"Blue":    "#378ADD",
+	"Green":   "#639922",
+	"Violet":  "#7F77DD",
+	"Pink":    "#D4537E",
+	"Magenta": "#993556",
+	"Orange":  "#D85A30",
+	"Gray":    "#5F5E5A",
+	"Aqua":    "#1D9E75",
+	"Rapid":   "#1D9E75",
+}
+
+func colorForLine(line string) lipgloss.Style {
+	for key, hex := range lineColors {
+		if strings.Contains(line, key) {
+			return lipgloss.NewStyle().Foreground(lipgloss.Color(hex))
+		}
 	}
+	return lipgloss.NewStyle().Foreground(lipgloss.Color("#888880"))
+}
+
+func RenderRoute(stations []string, lines []string) string {
+	var b strings.Builder
+
+	for i, station := range stations {
+		glyph := "●"
+		if i > 0 && i < len(stations)-1 && lines[i] != lines[i-1] {
+			glyph = "𖧋"
+		}
+
+		style := colorForLine(lines[i])
+		b.WriteString(style.Render(glyph))
+		b.WriteString(" ")
+		b.WriteString(station)
+
+		if i < len(stations)-1 {
+			b.WriteString("  ")
+			b.WriteString(style.Render("───"))
+			b.WriteString("  ")
+		}
+	}
+
+	return b.String()
 }
