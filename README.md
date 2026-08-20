@@ -1,7 +1,8 @@
 # mx3ro
 
-## Route from Nirman Vihar to Kashmere Gate
-![From Nirman Vihar to Kashmere Gate](<asset 1.png>)
-
-## Route from JMI to Vaishali
-![From Jamia Millia Islamia to Vaishali](<asset 2.png>)
+## Route 1
+![Nirman Vihar ➜ Dwarka Mor](a3.png)
+## Route 2
+![Inderlok ➜ Dilshad Garden](a2.png)
+## Route 3
+![Inderlok ➜ JMI](a1.png)
