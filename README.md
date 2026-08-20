@@ -18,3 +18,8 @@ Below i have attached some references to see:
 ![Inderlok ➜ Dilshad Garden](a2.png)
 ## Route 3
 ![Inderlok ➜ JMI](a1.png)
+
+Data Cleaning is also a significant part of the project but what it did is stripping messy tags out of station names, fixing the spelling inconsistency in one line's name (violet from voilet). Stations on the same line, sorted by distance, become "connected" to their immediate neighbours. Stations that share the same name but appear under different lines become "interchange" connections and for ui lipgloss did the work and muesli helped in fixing the inconsistent discolouration pretty common in xterm256 standard.
+> ● **represents** source, destination, and any interchange stops
+
+> ○ **represents** ordinary stations in between
