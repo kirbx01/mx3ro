@@ -1,5 +1,5 @@
 # mx3ro
-A project oriented on learning the concepts of backtracking through go that was made with the purpose of getting hands on with practical implementation of taking the user's typed-in source/destination and matching them case-insensitively against actual station names, then running two search algorithms: 
+A project oriented on learning the concepts of backtracking through go that was made with the purpose of getting hands on with practical implementation of taking the user's typed-in source-destination and matching them case-insensitively against actual station names, then running two search algorithms: 
 1. a fast BFS to find the shortest possible route as a baseline,
 2. and a DFS-with-backtracking search capped near that baseline length to also surface a handful of close alternative routes, sorted shortest-first and trimmed to the top few.
 I also calculated the time for each route with the help of
