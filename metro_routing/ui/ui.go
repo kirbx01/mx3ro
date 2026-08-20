@@ -4,7 +4,12 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
+	"github.com/muesli/termenv"
 )
+
+func init() {
+	lipgloss.SetColorProfile(termenv.TrueColor)
+}
 
 var lineColors = map[string]string{
 	"Red":     "#E24B4A",
@@ -20,21 +25,20 @@ var lineColors = map[string]string{
 	"Rapid":   "#1D9E75",
 }
 
-func normalizeLineName(line string) string {
-	trimmed := strings.TrimSpace(line)
-	trimmed = strings.TrimSuffix(trimmed, " line")
-	trimmed = strings.TrimSuffix(trimmed, " Line")
-	trimmed = strings.TrimSuffix(trimmed, "LINE")
-	return trimmed
-}
-
 func colorForLine(line string) lipgloss.Style {
-	style := lipgloss.NewStyle()
-	name := normalizeLineName(line)
-	if colorHex, ok := lineColors[name]; ok {
-		style = style.Foreground(lipgloss.Color(colorHex))
+	if strings.HasPrefix(line, "interchange:") {
+		parts := strings.Split(line, "->")
+		if len(parts) == 2 {
+			line = parts[1]
+		}
 	}
-	return style
+
+	for key, hex := range lineColors {
+		if strings.Contains(line, key) {
+			return lipgloss.NewStyle().Foreground(lipgloss.Color(hex))
+		}
+	}
+	return lipgloss.NewStyle().Foreground(lipgloss.Color("#888880"))
 }
 
 func RenderRoute(stations []string, lines []string) string {

@@ -29,7 +29,6 @@ func main() {
 
 	graph := buildGraph(metro.Edges)
 	nameLookup := buildNameLookup(metro.Stations)
-	distLookup := buildDistLookup(metro.Stations)
 
 	color.New(color.FgHiCyan, color.Bold).Println("waddup mx3ro user જ⁀➴")
 	fmt.Println()
@@ -57,10 +56,12 @@ func main() {
 		fmt.Println("No route found.")
 		return
 	}
+
 	shortestLen := len(shortest)
 
 	visited := map[string]bool{}
 	var routes [][]StepInfo
+
 	startPath := []StepInfo{{Station: source, Line: ""}}
 	findAllRoutes(graph, source, destination, visited, startPath, &routes, shortestLen+4)
 
@@ -78,15 +79,21 @@ func main() {
 	for i, route := range routes {
 		var stationNames []string
 		var lineNames []string
+
 		for _, step := range route {
 			stationNames = append(stationNames, step.Station)
 			lineNames = append(lineNames, step.Line)
 		}
 
-		minutes := estimateMinutes(route, distLookup)
+		minutes := estimateMinutes(route)
 		duration := formatDuration(minutes)
 
-		fmt.Printf("Route %d (%d stops, ~%s):\n", i+1, len(route)-1, duration)
+		fmt.Printf("Route %d (%d stops, ~%s):\n",
+			i+1,
+			len(route)-1,
+			duration,
+		)
+
 		fmt.Println(ui.RenderRoute(stationNames, lineNames))
 		fmt.Println()
 	}

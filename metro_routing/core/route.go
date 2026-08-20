@@ -56,31 +56,26 @@ func findAllRoutes(graph map[string][]Neighbor, current, destination string, vis
 	visited[current] = false
 }
 
-func estimateMinutes(route []StepInfo, distLookup map[string]float64) float64 {
-	const avgSpeedKmph = 33.0
-	const interchangePenaltyMin = 3.0
+func estimateMinutes(route []StepInfo) float64 {
+	const avgMinutesPerStop = 2.5
+	const interchangePenaltyMin = 4.0
 
-	totalKm := 0.0
+	stops := len(route) - 1
 	interchanges := 0
+
 	var lastLine string
 
 	for i := 1; i < len(route); i++ {
-		prevDist := distLookup[route[i-1].Station]
-		currDist := distLookup[route[i].Station]
+		currentLine := route[i].Line
 
-		diff := currDist - prevDist
-		if diff < 0 {
-			diff = -diff
-		}
-		totalKm += diff
-
-		if route[i].Line != lastLine && i > 1 {
+		if lastLine != "" && currentLine != lastLine {
 			interchanges++
 		}
-		lastLine = route[i].Line
+
+		lastLine = currentLine
 	}
 
-	travelMin := (totalKm / avgSpeedKmph) * 60
+	travelMin := float64(stops) * avgMinutesPerStop
 	return travelMin + float64(interchanges)*interchangePenaltyMin
 }
 
