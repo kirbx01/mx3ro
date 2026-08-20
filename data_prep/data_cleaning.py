@@ -97,7 +97,7 @@ def main():
         'interchanges': {name: list(lines) for name, lines in interchanges.items()}
     }
 
-    with open('stations.json', 'w', encoding='utf-8') as f:
+    with open('/home/pansi/mx3ro/metro_routing/stations.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
     print('Wrote stations.json')

@@ -5015,22 +5015,7 @@
     {
       "from": "Kashmere Gate",
       "to": "Kashmere Gate",
-      "line": "interchange:Yellow line->Violet line"
-    },
-    {
-      "from": "Kashmere Gate",
-      "to": "Kashmere Gate",
-      "line": "interchange:Yellow line->Red line"
-    },
-    {
-      "from": "Kashmere Gate",
-      "to": "Kashmere Gate",
-      "line": "interchange:Violet line->Yellow line"
-    },
-    {
-      "from": "Kashmere Gate",
-      "to": "Kashmere Gate",
-      "line": "interchange:Violet line->Red line"
+      "line": "interchange:Red line->Violet line"
     },
     {
       "from": "Kashmere Gate",
@@ -5040,7 +5025,22 @@
     {
       "from": "Kashmere Gate",
       "to": "Kashmere Gate",
-      "line": "interchange:Red line->Violet line"
+      "line": "interchange:Violet line->Red line"
+    },
+    {
+      "from": "Kashmere Gate",
+      "to": "Kashmere Gate",
+      "line": "interchange:Violet line->Yellow line"
+    },
+    {
+      "from": "Kashmere Gate",
+      "to": "Kashmere Gate",
+      "line": "interchange:Yellow line->Red line"
+    },
+    {
+      "from": "Kashmere Gate",
+      "to": "Kashmere Gate",
+      "line": "interchange:Yellow line->Violet line"
     },
     {
       "from": "Netaji Subash Place",
@@ -5055,22 +5055,22 @@
     {
       "from": "Azadpur",
       "to": "Azadpur",
-      "line": "interchange:Yellow line->Pink line"
+      "line": "interchange:Pink line->Yellow line"
     },
     {
       "from": "Azadpur",
       "to": "Azadpur",
-      "line": "interchange:Pink line->Yellow line"
-    },
-    {
-      "from": "Rajiv Chowk",
-      "to": "Rajiv Chowk",
-      "line": "interchange:Yellow line->Blue line"
+      "line": "interchange:Yellow line->Pink line"
     },
     {
       "from": "Rajiv Chowk",
       "to": "Rajiv Chowk",
       "line": "interchange:Blue line->Yellow line"
+    },
+    {
+      "from": "Rajiv Chowk",
+      "to": "Rajiv Chowk",
+      "line": "interchange:Yellow line->Blue line"
     },
     {
       "from": "Central Secretariat",
@@ -5085,22 +5085,22 @@
     {
       "from": "Dilli Haat INA",
       "to": "Dilli Haat INA",
-      "line": "interchange:Yellow line->Pink line"
+      "line": "interchange:Pink line->Yellow line"
     },
     {
       "from": "Dilli Haat INA",
       "to": "Dilli Haat INA",
-      "line": "interchange:Pink line->Yellow line"
-    },
-    {
-      "from": "Hauz Khas",
-      "to": "Hauz Khas",
-      "line": "interchange:Yellow line->Magenta line"
+      "line": "interchange:Yellow line->Pink line"
     },
     {
       "from": "Hauz Khas",
       "to": "Hauz Khas",
       "line": "interchange:Magenta line->Yellow line"
+    },
+    {
+      "from": "Hauz Khas",
+      "to": "Hauz Khas",
+      "line": "interchange:Yellow line->Magenta line"
     },
     {
       "from": "Sikandarpur",
@@ -5155,12 +5155,12 @@
     {
       "from": "Mandi House",
       "to": "Mandi House",
-      "line": "interchange:Violet line->Blue line"
+      "line": "interchange:Blue line->Violet line"
     },
     {
       "from": "Mandi House",
       "to": "Mandi House",
-      "line": "interchange:Blue line->Violet line"
+      "line": "interchange:Violet line->Blue line"
     },
     {
       "from": "Yamuna Bank",
@@ -5235,12 +5235,12 @@
     {
       "from": "Kalkaji Mandir",
       "to": "Kalkaji Mandir",
-      "line": "interchange:Violet line->Magenta line"
+      "line": "interchange:Magenta line->Violet line"
     },
     {
       "from": "Kalkaji Mandir",
       "to": "Kalkaji Mandir",
-      "line": "interchange:Magenta line->Violet line"
+      "line": "interchange:Violet line->Magenta line"
     }
   ],
   "interchanges": {
@@ -5249,33 +5249,33 @@
       "Pink line"
     ],
     "Kashmere Gate": [
-      "Yellow line",
+      "Red line",
       "Violet line",
-      "Red line"
+      "Yellow line"
     ],
     "Netaji Subash Place": [
       "Red line",
       "Pink line"
     ],
     "Azadpur": [
-      "Yellow line",
-      "Pink line"
+      "Pink line",
+      "Yellow line"
     ],
     "Rajiv Chowk": [
-      "Yellow line",
-      "Blue line"
+      "Blue line",
+      "Yellow line"
     ],
     "Central Secretariat": [
       "Violet line",
       "Yellow line"
     ],
     "Dilli Haat INA": [
-      "Yellow line",
-      "Pink line"
+      "Pink line",
+      "Yellow line"
     ],
     "Hauz Khas": [
-      "Yellow line",
-      "Magenta line"
+      "Magenta line",
+      "Yellow line"
     ],
     "Sikandarpur": [
       "Yellow line",
@@ -5298,8 +5298,8 @@
       "Green line branch"
     ],
     "Mandi House": [
-      "Violet line",
-      "Blue line"
+      "Blue line",
+      "Violet line"
     ],
     "Yamuna Bank": [
       "Blue line",
@@ -5330,8 +5330,8 @@
       "Pink line"
     ],
     "Kalkaji Mandir": [
-      "Violet line",
-      "Magenta line"
+      "Magenta line",
+      "Violet line"
     ]
   }
 }
