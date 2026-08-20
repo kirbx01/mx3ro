@@ -1,4 +1,8 @@
 # mx3ro
+> THIS IS NOT CURRENTLY EXECUTABLE ON INDIVIDUAL PC RATHER A DEMONSTRATION IF YOU DESIRE TO RUN IT YOU CAN CLONE IT BY CONVENTION BUT VERY SOON I'LL TRY TO PACKAGE AND MAKE IT AVAILABLE FOR ALL SYSTEMS
+
+> ⚠️ This project needs CGO so be familiar with makefiles and building your system if you use arch or nix or independent systems make sure to be able to use that.
+
 A project oriented on learning the concepts of backtracking through go that was made with the purpose of getting hands on with practical implementation of taking the user's typed-in source-destination and matching them case-insensitively against actual station names, then running two search algorithms: 
 1. a fast BFS to find the shortest possible route as a baseline,
 2. and a DFS-with-backtracking search capped near that baseline length to also surface a handful of close alternative routes, sorted shortest-first and trimmed to the top few.
