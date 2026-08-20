@@ -73,8 +73,9 @@ func main() {
 	fmt.Printf("Found %d route(s):\n\n", len(routes))
 
 	for i, route := range routes {
-	minutes := estimateMinutes(route, distLookup)
-	color.New(color.FgHiWhite, color.Bold).Printf("Route %d (%d stops, ~%.0f min):\n", i+1, len(route)-1, minutes)
+		minutes := estimateMinutes(route, distLookup)
+		duration := formatDuration(minutes)
+		color.New(color.FgHiWhite, color.Bold).Printf("Route %d (%d stops, ~%s):\n", i+1, len(route)-1, duration)
 		var lastLine string
 		for j, step := range route {
 			printer := ui.LineColor(step.Line)

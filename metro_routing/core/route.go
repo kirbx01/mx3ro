@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type StepInfo struct {
 	Station string
 	Line    string
@@ -80,4 +82,15 @@ func estimateMinutes(route []StepInfo, distLookup map[string]float64) float64 {
 
 	travelMin := (totalKm / avgSpeedKmph) * 60
 	return travelMin + float64(interchanges)*interchangePenaltyMin
+}
+
+func formatDuration(totalMinutes float64) string {
+	mins := int(totalMinutes + 0.5) // round to nearest minute
+	hours := mins / 60
+	remainder := mins % 60
+
+	if hours > 0 {
+		return fmt.Sprintf("%dh %dm", hours, remainder)
+	}
+	return fmt.Sprintf("%dm", remainder)
 }
